@@ -12,6 +12,7 @@ const shopSchema = Schema({
       id: String,
       name: String,
       imageUrl: String,
+      description: String,
       price: Number,
     },
   ],
@@ -30,7 +31,6 @@ const orderSchema = Schema({
     type: String,
     match: emailRegex,
     required: [true, 'Email is required'],
-    // unique: true,
   },
   phone: {
     type: String,

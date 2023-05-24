@@ -10,5 +10,3 @@ const loadShopsData = async () => {
     console.log('Error loading data:', error);
   }
 };
-
-loadShopsData();
