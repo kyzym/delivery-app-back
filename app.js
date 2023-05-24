@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.use('/api/shops', shopsRouter);
-// app.use('/api/orders', authRouter);
+app.use('/api/orders', ordersRouter);
 
 app.use((_, res) => {
   res.status(404).json({ status: 'error', message: 'Invalid URL' });

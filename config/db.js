@@ -1,5 +1,6 @@
 const { DB_HOST } = process.env;
 const mongoose = require('mongoose').set('strictQuery', true);
+require('colors');
 
 const connectDb = async () => {
   try {

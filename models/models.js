@@ -30,7 +30,7 @@ const orderSchema = Schema({
     type: String,
     match: emailRegex,
     required: [true, 'Email is required'],
-    unique: true,
+    // unique: true,
   },
   phone: {
     type: String,
