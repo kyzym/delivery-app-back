@@ -22,6 +22,10 @@ const Shop = model('Shop', shopSchema);
 
 const orderSchema = Schema({
   id: String,
+  date: {
+    type: Date,
+    default: Date.now,
+  },
   name: {
     type: String,
     minlength: 1,
@@ -39,6 +43,7 @@ const orderSchema = Schema({
     maxlength: 20,
   },
   address: { type: String, required: [true, 'Address is required'] },
+  totalCost: { type: Number, required: true },
   items: [
     {
       shop: String,
