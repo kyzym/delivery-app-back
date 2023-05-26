@@ -1,8 +1,8 @@
 const { Order } = require('../../models/models');
 
-const getOrdersByEmailAndPhone = async (req, res) => {
+const getOrders = async (req, res) => {
   const { email, phone } = req.body;
-  const orders = await Order.find({ email, phone });
+  const orders = await Order.find({ email, phone }).sort({ date: -1 });
 
   if (orders.length === 0) {
     res
@@ -13,4 +13,4 @@ const getOrdersByEmailAndPhone = async (req, res) => {
   }
 };
 
-module.exports = getOrdersByEmailAndPhone;
+module.exports = getOrders;
