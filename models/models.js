@@ -21,7 +21,6 @@ const shopSchema = Schema({
 const Shop = model('Shop', shopSchema);
 
 const orderSchema = Schema({
-  id: String,
   date: {
     type: Date,
     default: Date.now,
@@ -58,7 +57,33 @@ const orderSchema = Schema({
 
 const Order = model('Order', orderSchema);
 
+const joiOrder = Joi.object({
+  date: Joi.date(),
+  name: Joi.string().min(1),
+  email: Joi.string().email().required(),
+  phone: Joi.string().min(6).max(20).required(),
+  address: Joi.string().required(),
+  totalCost: Joi.number().required(),
+  items: Joi.array()
+    .items(
+      Joi.object({
+        shop: Joi.string().required(),
+        id: Joi.string().required(),
+        name: Joi.string().required(),
+        imageUrl: Joi.string().uri().required(),
+        price: Joi.number().required(),
+        quantity: Joi.number().required(),
+        description: Joi.string(),
+        _id: Joi.string(),
+      })
+    )
+    .required(),
+});
+
+orderSchema.post('save', handleMongooseErr);
+
 module.exports = {
   Shop,
   Order,
+  joiOrder,
 };
